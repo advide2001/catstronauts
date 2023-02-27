@@ -1,23 +1,39 @@
-import './style.css'
-import typescriptLogo from './typescript.svg'
-import { setupCounter } from './counter'
+let userName: string = "Adarsh Vinayak Desai";
+let age: number = 21;
+let isDeveloper: boolean = true;
+let hobbies: string[] = ["Coding", "Gaming", "Watching Movies"];
+console.log(userName, age, isDeveloper, hobbies);
 
-document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://www.typescriptlang.org/" target="_blank">
-      <img src="${typescriptLogo}" class="logo vanilla" alt="TypeScript logo" />
-    </a>
-    <h1>Vite + TypeScript</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite and TypeScript logos to learn more
-    </p>
-  </div>
-`
+const names: string[] = userName.split(" ");
+console.log(names);
 
-setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
+interface Person {
+  name: string;
+  age: number;
+}
+
+const myPerson: Person = {
+  name: "Adarsh Vinayak Desai",
+  age: 21,
+};
+console.log(myPerson);
+
+const ids: Record<number, string> = {
+  101: "Adarsh Vinayak Desai",
+  102: "Akshay Vinayak Desai",
+  103: "Vinayak Desai",
+};
+ids[104] = "Deepa Desai";
+
+if (ids[104]) console.log(ids[102]);
+
+for (let i = 0; i < hobbies.length; i++) console.log(hobbies[i]);
+
+hobbies.forEach((hobby) => console.log(hobby));
+
+const myhobbies = hobbies.map((hobby) => {
+  return hobby.toUpperCase();
+});
+console.log(myhobbies);
+
+export {};
