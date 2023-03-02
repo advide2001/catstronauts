@@ -132,13 +132,42 @@ function postEvent<EventName extends keyof EventMap>(
   console.log(`Posting Data: ${JSON.stringify(data)}`);
 }
 
-postEvent("addToCart", {
-  time: 12,
-  user: "Adarsh",
-  quantity: 2,
-  productID: "123",
-});
-postEvent("checkout", { time: 12, user: "Adarsh" });
-postEvent("viewProduct", { time: 12, user: "Adarsh", productID: "123" });
+// postEvent("addToCart", {
+//   time: 12,
+//   user: "Adarsh",
+//   quantity: 2,
+//   productID: "123",
+// });
+// postEvent("checkout", { time: 12, user: "Adarsh" });
+// postEvent("viewProduct", { time: 12, user: "Adarsh", productID: "123" });
+
+interface MyUser {
+  name: string;
+  id: number;
+  email?: string;
+}
+
+// Instead of this we can use Partial<T> type
+// interface MyUserOptionals {
+//   name?: string;
+//   id?: number;
+//   email?: string;
+// }
+
+type MyUserOptionals = Partial<MyUser>;
+
+const merge = (user: MyUser, overrides: MyUserOptionals): MyUser => {
+  return {
+    ...user,
+    ...overrides,
+  };
+};
+
+console.log(
+  merge(
+    { name: "Adarsh", id: 1, email: "asd@google.com" },
+    { name: "Adarsh Desai", email: "avd@example.com" }
+  )
+);
 
 export {};
