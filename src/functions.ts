@@ -93,12 +93,52 @@ function ranker<RankItem>(
   return items.sort((a, b) => rank(a) - rank(b));
 }
 
+function pluck<T, K extends keyof T>(items: T[], key: K): T[K][] {
+  return items.map((item) => item[key]);
+}
+
 const items = [
   { name: "A", rank: 10 },
   { name: "B", rank: 5 },
   { name: "C", rank: 15 },
 ];
 
+// for ranker function
 console.log(ranker(items, (item) => item.rank));
+
+// for pluck function
+console.log(pluck(items, "name"));
+console.log(pluck(items, "rank"));
+
+// Base event interface that all events will extend
+interface BaseEvent {
+  time: number;
+  user: string;
+}
+
+// Event map is a type that maps event names to event payloads
+interface EventMap {
+  addToCart: BaseEvent & { quantity: number; productID: string };
+  checkout: BaseEvent;
+  viewProduct: BaseEvent & { productID: string };
+}
+
+function postEvent<EventName extends keyof EventMap>(
+  name: EventName,
+  data: EventMap[EventName]
+): void {
+  // ... implementation
+  console.log(`Name of the event: ${name}`);
+  console.log(`Posting Data: ${JSON.stringify(data)}`);
+}
+
+postEvent("addToCart", {
+  time: 12,
+  user: "Adarsh",
+  quantity: 2,
+  productID: "123",
+});
+postEvent("checkout", { time: 12, user: "Adarsh" });
+postEvent("viewProduct", { time: 12, user: "Adarsh", productID: "123" });
 
 export {};
