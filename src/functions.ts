@@ -170,4 +170,26 @@ console.log(
   )
 );
 
+interface Cat {
+  name: string;
+  purrs: boolean;
+}
+
+function makeCat(name: string, purrs: boolean): Readonly<Cat> {
+  return {
+    name,
+    purrs,
+  };
+}
+
+const dummu = makeCat("Dummu", false);
+// dummu.name = "Dummu2"; readonly property cannot be changed
+console.log(dummu);
+
+// How to achieve true immutable array
+const array = [1, 2, 3, 4] as const;
+// array.push(5); // Cannot push to readonly array
+// array[0] = 5; // Cannot change readonly array
+console.log(array);
+
 export {};
