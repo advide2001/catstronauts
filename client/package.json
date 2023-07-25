@@ -20,7 +20,8 @@
   "scripts": {
     "test": "vitest",
     "start": "vite",
-    "build": "vite build"
+    "build": "vite build",
+    "generate": "graphql-codegen"
   },
   "browserslist": {
     "production": [
