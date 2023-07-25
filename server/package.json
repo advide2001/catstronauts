@@ -16,5 +16,9 @@
   },
   "author": "Raphael Terrier @R4ph-t",
   "license": "MIT",
-  "private": true
+  "private": true,
+  "dependencies": {
+    "@graphql-tools/mock": "^9.0.0",
+    "@graphql-tools/schema": "^10.0.0"
+  }
 }
